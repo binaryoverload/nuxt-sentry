@@ -10,13 +10,13 @@ import {
 import defu from "defu"
 import { defineNuxtPlugin, useAppConfig, useRuntimeConfig } from "nuxt/app"
 
-import { type AppConfig, type DisableIntegrationConfig } from "../types"
+import { type DisableIntegrationConfig } from "../types"
 
 export default defineNuxtPlugin({
   enforce: "pre",
   setup(nuxt) {
     const runtimeSentryConfig = useRuntimeConfig().public.sentry
-    const appSentryConfig = useAppConfig().sentry as AppConfig | undefined
+    const appSentryConfig = useAppConfig().sentry
 
     const enabled = runtimeSentryConfig?.enabled ?? !process.dev
     const dsn = runtimeSentryConfig?.dsn

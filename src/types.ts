@@ -56,4 +56,7 @@ declare module "@nuxt/schema" {
   interface AppConfigInput {
     sentry?: AppConfig
   }
+  interface AppConfig {
+    sentry?: AppConfig
+  }
 }
