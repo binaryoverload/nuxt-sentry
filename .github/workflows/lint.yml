@@ -24,5 +24,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Prepare Environment
+        run: pnpm run dev:prepare
+
       - name: Run linting
         run: pnpm run lint
