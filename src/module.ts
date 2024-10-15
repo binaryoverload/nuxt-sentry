@@ -1,8 +1,8 @@
 import type { SentryModuleOptions } from "./types/module"
+import type { Nuxt } from "@nuxt/schema"
 import type { Plugin } from "vite"
 
-import { addPlugin, addVitePlugin, createResolver, defineNuxtModule } from "@nuxt/kit"
-import { useLogger } from "@nuxt/kit"
+import { addPlugin, addVitePlugin, createResolver, defineNuxtModule, useLogger } from "@nuxt/kit"
 import { type SentryVitePluginOptions, sentryVitePlugin } from "@sentry/vite-plugin"
 import defu from "defu"
 
@@ -16,8 +16,7 @@ export default defineNuxtModule<SentryModuleOptions>({
       nuxt: "^3.0.0",
     },
   },
-
-  async setup(_moduleOptions, nuxt) {
+  async setup(_moduleOptions: SentryModuleOptions, nuxt: Nuxt) {
     if (_moduleOptions.enabled === false) {
       logger.warn("Sentry module is disabled")
       return

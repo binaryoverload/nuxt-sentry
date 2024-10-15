@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Prepare Build
-        run: pnpm run prepack
+      - name: Prepare Environment
+        run: pnpm run dev:prepare
 
       - name: Run Build
         run: pnpm run typecheck

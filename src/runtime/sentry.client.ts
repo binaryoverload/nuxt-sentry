@@ -4,8 +4,7 @@ import type {
   ClientIntegrations,
 } from "../types/integrations"
 import type { Entries } from "../types/util"
-import type { Integration } from "@sentry/types"
-import type { Options } from "@sentry/vue/types/types"
+import type { Integration, Options } from "@sentry/types"
 
 import {
   breadcrumbsIntegration,
@@ -31,7 +30,13 @@ import {
   withScope,
 } from "@sentry/vue"
 import defu from "defu"
-import { type NuxtSSRContext, defineNuxtPlugin, useAppConfig, useRuntimeConfig } from "nuxt/app"
+import {
+  type NuxtSSRContext,
+  defineNuxtPlugin,
+  useAppConfig,
+  useRouter,
+  useRuntimeConfig,
+} from "nuxt/app"
 
 type _NuxtApp = NuxtSSRContext["nuxt"]
 
@@ -74,7 +79,7 @@ export default defineNuxtPlugin({
     const runtimeSentryConfig = useRuntimeConfig().public.sentry
     const appSentryConfig = useAppConfig().sentry
 
-    const enabled = runtimeSentryConfig?.enabled ?? !process.dev
+    const enabled = runtimeSentryConfig?.enabled ?? !import.meta.dev
     const dsn = runtimeSentryConfig?.dsn
 
     if (!dsn) {
@@ -87,8 +92,7 @@ export default defineNuxtPlugin({
 
     const appSdkConfig = appSentryConfig?.clientSdk
     const appIntegrations = appSentryConfig?.clientIntegrations
-    const appConfig =
-      typeof appSdkConfig === "function" ? appSdkConfig(nuxt.vueApp.$nuxt) : appSdkConfig
+    const appConfig = typeof appSdkConfig === "function" ? appSdkConfig(nuxt) : appSdkConfig
 
     const integrationConfig = defu(runtimeIntegrations, appIntegrations)
 
@@ -96,11 +100,11 @@ export default defineNuxtPlugin({
       tracesSampleRate: 1,
       replaysSessionSampleRate: 0.1,
       replaysOnErrorSampleRate: 1,
-      environment: process.dev ? "development" : "production",
+      environment: import.meta.dev ? "development" : "production",
       enabled,
     } as const)
 
-    const integrations = config.integrations ?? buildIntegrations(integrationConfig, nuxt)
+    const integrations = config.integrations ?? buildIntegrations(integrationConfig)
 
     init({
       app: nuxt.vueApp,
@@ -122,7 +126,7 @@ export default defineNuxtPlugin({
   },
 })
 
-function buildIntegrations(integrationConfig: ClientIntegrationConfig, nuxtApp: _NuxtApp) {
+function buildIntegrations(integrationConfig: ClientIntegrationConfig) {
   const integrations: Integration[] = []
 
   for (const [name, integration] of Object.entries(integrationMap) as Entries<
@@ -143,7 +147,7 @@ function buildIntegrations(integrationConfig: ClientIntegrationConfig, nuxtApp: 
       integrations.push(
         vueBrowserTracingIntegration({
           ...browserOptions,
-          router: nuxtApp.vueApp.$nuxt.$router,
+          router: useRouter(),
         }),
       )
       continue

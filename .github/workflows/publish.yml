@@ -8,6 +8,7 @@ on:
     paths:
       - 'src/**'
       - 'package.json'
+      - 'pnpm-lock.yaml'
       - '.github/workflows/publish.yml'
 
 jobs:
@@ -30,6 +31,9 @@ jobs:
 
       - name: Install pnpm packages
         run: pnpm install -r --frozen-lockfile
+
+      - name: Prepare Environment
+        run: pnpm run dev:prepare
 
       - name: Pre-Pack
         run: pnpm run prepack
