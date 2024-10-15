@@ -1,6 +1,6 @@
 import type { ClientIntegrationConfig } from "./integrations"
-import type { SentryVitePluginOptions } from "@sentry/vite-plugin"
 import type { Options as SentryVueOptions } from "@sentry/types"
+import type { SentryVitePluginOptions } from "@sentry/vite-plugin"
 import type { NuxtApp } from "nuxt/app"
 
 export type SentryConfig = Partial<Omit<SentryVueOptions, "Vue" | "app" | "dsn">>

@@ -1,9 +1,9 @@
 import type { SentryModuleOptions } from "./types/module"
+import type { Nuxt } from "@nuxt/schema"
 import type { Plugin } from "vite"
 
 import { addPlugin, addVitePlugin, createResolver, defineNuxtModule, useLogger } from "@nuxt/kit"
 import { type SentryVitePluginOptions, sentryVitePlugin } from "@sentry/vite-plugin"
-import type { Nuxt, NuxtApp } from "@nuxt/schema"
 import defu from "defu"
 
 const logger = useLogger("nuxt:sentry")

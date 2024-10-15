@@ -6,4 +6,5 @@ module.exports = {
   singleQuote: false,
   printWidth: 100,
   htmlWhitespaceSensitivity: "ignore",
+  quoteProps: "consistent",
 }
