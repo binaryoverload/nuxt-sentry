@@ -87,7 +87,7 @@ export default defineNuxtPlugin({
     const appSdkConfig = appSentryConfig?.clientSdk
     const appIntegrations = appSentryConfig?.clientIntegrations
     const appConfig =
-      typeof appSdkConfig === "function" ? appSdkConfig(nuxt.vueApp.$nuxt) : appSdkConfig
+      typeof appSdkConfig === "function" ? appSdkConfig(nuxt) : appSdkConfig
 
     const integrationConfig = defu(runtimeIntegrations, appIntegrations)
 
