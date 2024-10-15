@@ -1,6 +1,6 @@
 {
   "name": "@binaryoverload/nuxt-sentry",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Nuxt 3 module for Sentry",
   "repository": "https://github.com/binaryoverload/nuxt-sentry",
   "license": "MIT",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.11.2",
     "@sentry/vite-plugin": "^2.16.1",
-    "@sentry/vue": "^7.119.2",
+    "@sentry/vue": "^8.34.0",
     "defu": "^6.1.4"
   },
   "devDependencies": {
@@ -46,7 +46,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.1.3",
     "nuxi": "^3.11.1",
-    "nuxt": "^3.11.2",
+    "nuxt": "^3.12.4",
     "prettier": "^3.2.5",
     "vue-tsc": "^2.0.16"
   },
