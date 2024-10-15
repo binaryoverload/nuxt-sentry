@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - master
+      - release/**
     paths:
       - 'src/**'
       - 'package.json'
+      - '.github/workflows/publish.yml'
 
 jobs:
   publish:
