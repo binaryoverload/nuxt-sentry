@@ -1,6 +1,6 @@
 {
   "name": "@binaryoverload/nuxt-sentry",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Nuxt 3 module for Sentry",
   "repository": "https://github.com/binaryoverload/nuxt-sentry",
   "license": "MIT",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.11.2",
     "@sentry/vite-plugin": "^2.16.1",
-    "@sentry/vue": "^7.114.0",
+    "@sentry/vue": "^7.119.2",
     "defu": "^6.1.4"
   },
   "devDependencies": {
