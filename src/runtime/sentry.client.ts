@@ -4,8 +4,7 @@ import type {
   ClientIntegrations,
 } from "../types/integrations"
 import type { Entries } from "../types/util"
-import type { Integration } from "@sentry/types"
-import type { Options } from "@sentry/vue/types/types"
+import type { Integration, Options } from "@sentry/types"
 
 import {
   breadcrumbsIntegration,
@@ -31,7 +30,7 @@ import {
   withScope,
 } from "@sentry/vue"
 import defu from "defu"
-import { type NuxtSSRContext, defineNuxtPlugin, useAppConfig, useRuntimeConfig } from "nuxt/app"
+import { type NuxtSSRContext, defineNuxtPlugin, useAppConfig, useRouter, useRuntimeConfig } from "nuxt/app"
 
 type _NuxtApp = NuxtSSRContext["nuxt"]
 
@@ -143,7 +142,7 @@ function buildIntegrations(integrationConfig: ClientIntegrationConfig, nuxtApp: 
       integrations.push(
         vueBrowserTracingIntegration({
           ...browserOptions,
-          router: nuxtApp.vueApp.$nuxt.$router,
+          router: useRouter()
         }),
       )
       continue
